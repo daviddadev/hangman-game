@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>The Hangman Game</title>
+</head>
+
+<body onload="startUp()">
+
+<div>
+
+    <h1>Let's Play Hangman!</h1>
+    <img src="https://previews.123rf.com/images/branche/branche1503/branche150300301/38127961-Noose-icon-Stock-Vector.jpg" height="100px" width="100px">
+    <h2>try to guess the superhero</h2>
+    <br>
+    <input id="letter" type="text" placeholder="type your letter here">
+    <input type="button" value="letter" onClick="Letter()"/>
+    <p id="answer"></p>
+    <p id="counter"></p>
+    <p id="stat"></p>
+
+<script type="text/javascript">
+
+    var randomWordArr = ["batman", "deadpool", "joker", "hulk", "spiderman", "ironman", "antman"];
+    var randomWord = randomWordArr[Math.floor(Math.random() * randomWordArr.length)];
+
+    var s;
+    var count = 0;
+    var answerArray = [];
+
+    function startUp()
+    {
+        for (var i = 0; i < randomWord.length; i++)
+        {
+            answerArray[i] = "_";
+        }
+
+        s = answerArray.join(" ");
+        document.getElementById("answer").innerHTML = s;
+
+    }
+
+    function Letter()
+    {
+        var letter = document.getElementById("letter").value;
+
+        if (letter.length > 0)
+            {
+                for (var i = 0; i < randomWord.length; i++)
+                {
+                    if (randomWord[i] === letter)
+                        {
+                            answerArray[i] = letter;
+                        }
+
+                }
+                count++;
+                document.getElementById("counter").innerHTML = "Number of clicks: " + count;
+                document.getElementById("answer").innerHTML = answerArray.join(" ");
+            }
+
+        if(count>5)
+            {
+                document.getElementById("stat").innerHTML = "You're doing great, keep it up!";
+            }
+
+
+
+    }
+
+</script>
+
+</div>
+
+</body>
+</html>
